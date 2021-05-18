@@ -1,5 +1,4 @@
 import { observable, action } from 'mobx'
-import { Api } from "../../services/api"
 import { myLog } from "../../utils/log"
 import MusicFiles from 'react-native-get-music-files'
 import { Platform } from "react-native"
@@ -10,7 +9,6 @@ class ListMusicStore {
     @observable musics = [];
 
     @observable currentPage = 0;
-
 
     @action
     async requestPermissions() {
