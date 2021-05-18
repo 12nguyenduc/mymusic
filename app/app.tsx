@@ -39,17 +39,17 @@ function App() {
   const navigationRef = useRef<NavigationContainerRef>()
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
 
-  setRootNavigation(navigationRef)
-  useBackButtonHandler(navigationRef, canExit)
-  const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
-    storage,
-    NAVIGATION_PERSISTENCE_KEY,
-  )
+  // setRootNavigation(navigationRef)
+  // useBackButtonHandler(navigationRef, canExit)
+  // const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
+  //   storage,
+  //   NAVIGATION_PERSISTENCE_KEY,
+  // )
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
     ;(async () => {
-      setupRootStore().then(setRootStore)
+      // setupRootStore().then(setRootStore)
     })()
   }, [])
 
@@ -65,8 +65,8 @@ function App() {
       <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
         <RootNavigator
           ref={navigationRef}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
+          // initialState={initialNavigationState}
+          // onStateChange={onNavigationStateChange}
         />
       </SafeAreaProvider>
     </RootStoreProvider>
