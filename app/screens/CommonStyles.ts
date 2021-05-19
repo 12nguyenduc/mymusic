@@ -7,6 +7,12 @@ export const commonStyles = StyleSheet.create({
   backgroundWhite: {
     backgroundColor: 'white'
   },
+  button: {
+    alignItems: 'center',
+    height: 50,
+    justifyContent: 'center',
+    width: 50,
+  },
   fill: {
     flex: 1,
   },
@@ -32,5 +38,6 @@ export const commonStyles = StyleSheet.create({
   toolbar: {
     height: 50,
   },
+
 
 })

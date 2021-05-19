@@ -14,124 +14,115 @@ import {
 import { useNavigation, CommonActions, } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { commonStyles } from "../CommonStyles"
-import listMusicStore from "./DownloadMusicStore"
+import listMusicStore from "./ListMusicStore"
 import FastImage from 'react-native-fast-image'
-import { ICHeadPhone } from "../../../assets/icons"
+import { ICBack, ICDownload, ICHeadPhone } from "../../../assets/icons"
 import { MText } from "../../components/MText"
 import { requestMultiple, request, PERMISSIONS, RESULTS } from "react-native-permissions"
 import MButton from "../../components/MButton"
 import { myLog } from "../../utils/log"
-import WebView from "react-native-webview"
-import RNFetchBlob from 'rn-fetch-blob'
-const RNFS = require('react-native-fs')
+import TrackPlayer, { usePlaybackState } from "react-native-track-player"
+import { ScreenNames } from "../../navigation"
 
-export const ListMusic: Component = observer(function ListMusic() {
+export const ListMusic: Component = observer(function ListMusic(props) {
   const navigation = useNavigation()
+  const playbackState = usePlaybackState()
 
   const requestPermission = async () => {
-    request(Platform.OS === "android" ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE : PERMISSIONS.IOS.PHOTO_LIBRARY).then(result => {
+    request(Platform.OS === "android" ? PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE : PERMISSIONS.IOS.MEDIA_LIBRARY).then(result => {
       myLog(result)
       switch (result) {
         case RESULTS.GRANTED:
+          listMusicStore.getAllMusic()
           break
       }
     }
     )
   }
 
+  async function setup() {
+    await TrackPlayer.setupPlayer({})
+    await TrackPlayer.updateOptions({
+      stopWithApp: true,
+      capabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_STOP
+      ],
+      compactCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE
+      ]
+    })
+  }
+
   useEffect(() => {
+    setup()
     requestPermission()
+    listMusicStore.getAllMusic()
   }, [])
 
-  const handleUrlWithMusic = (input) => {
-    // check if have another download
-    if (
-      // this.state.downloadStart == true ||
-      input.url.toLowerCase().includes('.mp3') == false) {
-      return
-    } else {
-      // this.setState({ downloadStart: true, showModalLoading: true })
-      myLog('downloadStart')
-    }
+  const playMusic = async (item) => {
+    const state = await TrackPlayer.getState()
+    if (state === TrackPlayer.STATE_PLAYING) {
+      console.log('The player is playing')
+    };
 
-    const directoryFile = RNFS.CachesDirectoryPath
+    // Add a track to the queue
+    await TrackPlayer.add({
+      id: 'trackId',
+      url: item.url,
+      title: item.albumName,
+      artist: item.artist,
+    })
 
-    // Creating folder
-    if (RNFS.exists(directoryFile)) {
-      RNFS.unlink(directoryFile)
-        .then(() => {
-          console.log('FOLDER/FILE DELETED')
-        })
-        // `unlink` will throw an error, if the item to unlink does not exist
-        .catch((err) => {
-          console.log('CANT DELETE', err.message)
-          // this.setState({ showError: true })
-        })
+    // Start playing it
+    await TrackPlayer.play()
+  }
 
-      RNFS.mkdir(directoryFile)
-    }
+  const goDownload = () => {
+    navigation.push(ScreenNames.DownloadMusic)
+  }
 
-    // If folder is created
-    if (input) {
-      // Verifing if the url have a .zip file
-      if (input.url.toLowerCase().includes('.mp3')) {
-        const urlDownload = input.url
-
-        let fileName
-        try {
-          fileName = urlDownload.substr(urlDownload.lastIndexOf('/')).replace('.mp3', '') + '.mp3'
-        } catch (e) {
-          console.log(e)
-          fileName = 'example.mp3'
-        }
-
-        console.log('URL = ' + urlDownload)
-
-        // Downloading the file on a folder
-        const dirs = directoryFile + '/' + fileName
-        RNFetchBlob
-          .config({
-            // response data will be saved to this path if it has access right.
-            path: dirs
-          })
-          .fetch('GET', urlDownload, {
-            // some headers ..
-          })
-          .progress((received, total) => {
-            console.log('progress', received / total)
-          })
-          .then((res) => {
-            // the path should be dirs.DocumentDir + 'path-to-file.anything'
-            console.log('The file saved to ', res.path())
-
-            // Acabou o download do arquivo
-            // this.setState({
-            //   downloadStart: false,
-            //   showModalLoading: false,
-            //   showFileExplorer: true,
-            //   startFolder: directoryFile
-            // })
-            myLog('directoryFile', directoryFile)
-          })
-      }
-    }
+  const renderItem = (item, index) => {
+    return (
+      <MButton
+        onPress={() => playMusic(item)}
+      >
+        <View style={[commonStyles.alignCenter, commonStyles.row, { paddingHorizontal: 16 }]}>
+          <View source={ICHeadPhone} style={[commonStyles.alignCenter, commonStyles.justifyCenter, { width: 40, height: 40, borderRadius: 20, backgroundColor: '#ff910080' }]}>
+            <FastImage source={ICHeadPhone} style={{ width: 24, height: 24, }}/>
+          </View>
+          <View style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
+            <MText style={{ color: 'black' }}>{item.albumName}</MText>
+            <MText style={{ color: 'black', marginTop: 2, fontSize: 12 }}>{item.artist}</MText>
+          </View>
+        </View>
+      </MButton>
+    )
   }
 
   return (
     <View style={[commonStyles.fill, { }]}>
       <SafeAreaView style={commonStyles.fill}>
-        <MText style={{ textAlign: 'center' }}>My Music</MText>
+        <View style={[commonStyles.alignCenter, commonStyles.row]}>
+          <MText style={[commonStyles.fill, { paddingLeft: 50, textAlign: 'center' }]}>My Music</MText>
+          <View>
+            <MButton
+              onPress={goDownload}
+              style={commonStyles.button}>
+              <Image source={ICDownload} style={{ width: 18, height: 18, resizeMode: 'contain' }}/>
+            </MButton>
+          </View>
+        </View>
         <View style={commonStyles.fill}>
-          <WebView
-            source={{ uri: "https://chiasenhac.vn/" }}
-            style={{}}
-            startInLoadingState={true}
-            allowUniversalAccessFromFileURLs={true}
-            javaScriptEnabled={true}
-            mixedContentMode={'always'}
-            onNavigationStateChange={(result) => handleUrlWithMusic(result)}
+          <FlatList
+            data={listMusicStore.musics}
+            renderItem={({ item, index }) => renderItem(item, index)}
+            keyExtractor={(item, index) => '#' + index}
           />
-
         </View>
       </SafeAreaView>
     </View>

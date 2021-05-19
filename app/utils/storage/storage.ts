@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage"
-
+export const LIST_MUSIC = 'LIST_MUSIC'
 /**
  * Loads a string from storage.
  *

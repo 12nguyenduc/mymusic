@@ -1,2 +1,4 @@
 const ICHeadPhone = require('./ic_headphone.png')
-export { ICHeadPhone }
+const ICBack = require('./ic_back.png')
+const ICDownload = require('./ic_download_cloud.png')
+export { ICHeadPhone, ICBack, ICDownload }

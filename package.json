@@ -49,6 +49,7 @@
     "react-native-get-music-files": "https://github.com/12nguyenduc/react-native-get-music-files.git",
     "react-native-keychain": "6.1.1",
     "react-native-localize": "^2.0.3",
+    "react-native-media-meta": "^0.0.11",
     "react-native-pager-view": "^5.1.8",
     "react-native-paper": "^4.8.1",
     "react-native-permissions": "^3.0.3",
