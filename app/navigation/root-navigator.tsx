@@ -32,7 +32,6 @@ const RootStack = () => {
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
-
         stackPresentation: "modal",
       }}
     >

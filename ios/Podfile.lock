@@ -246,8 +246,8 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-track-player (1.2.7):
-    - React-Core
+  - react-native-track-player (1.2.5):
+    - React
   - react-native-webview (11.4.5):
     - React-Core
   - React-RCTActionSheet (0.63.2):
@@ -310,6 +310,8 @@ PODS:
     - React-Core (= 0.63.2)
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
+  - rn-fetch-blob (0.12.0):
+    - React-Core
   - RNCAsyncStorage (1.12.1):
     - React-Core
   - RNCMaskedView (0.1.10):
@@ -328,11 +330,11 @@ PODS:
     - React-Core
   - RNKeychain (6.1.1):
     - React
-  - RNLocalize (1.4.3):
+  - RNLocalize (2.0.3):
     - React-Core
   - RNPermissions (3.0.3):
     - React-Core
-  - RNReactNativeGetMusicFiles (1.0.0):
+  - RNReactNativeGetMusicFiles (2.1.1):
     - React
   - RNScreens (2.18.1):
     - React-Core
@@ -404,6 +406,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
@@ -414,7 +417,7 @@ DEPENDENCIES:
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
-  - RNReactNativeGetMusicFiles (from `../node_modules/react-native-get-music-files/ios`)
+  - "RNReactNativeGetMusicFiles (from `../node_modules/@yajanarao/react-native-get-music-files`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -531,6 +534,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  rn-fetch-blob:
+    :path: "../node_modules/rn-fetch-blob"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
@@ -552,7 +557,7 @@ EXTERNAL SOURCES:
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReactNativeGetMusicFiles:
-    :path: "../node_modules/react-native-get-music-files/ios"
+    :path: "../node_modules/@yajanarao/react-native-get-music-files"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSentry:
@@ -603,7 +608,7 @@ SPEC CHECKSUMS:
   react-native-pager-view: a0b86051cb34c1868601ba65a8133e3b7a2830b5
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-track-player: d74e315812b95b428619811eb72224a13a924d12
+  react-native-track-player: 1265cf3de08881181faac4320f6d928a22d8cd0b
   react-native-webview: 6d1d368c38edcc0a074bcc51a94ec8de700c241e
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
@@ -615,6 +620,7 @@ SPEC CHECKSUMS:
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
+  rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPushNotificationIOS: 61a7c72bd1ebad3568025957d001e0f0e7b32191
@@ -623,9 +629,9 @@ SPEC CHECKSUMS:
   RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNKeychain: db956c02a018f7dd3a0ea8a6cf3087bc1894bf2b
-  RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79
+  RNLocalize: 99e59cad311ca1b6872b1764514009416ccba03d
   RNPermissions: 034db8a73d562766f990c89abbdeaa5d6e204c67
-  RNReactNativeGetMusicFiles: 8d3b3faacdb709f48bb35e2e9bce0ec25e338f03
+  RNReactNativeGetMusicFiles: 652fe77c494cc18cfca5eb9192124fb995918704
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSentry: 6f8f9ee7e4c939dcd35e5633b94d0e3782888e46
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
@@ -634,6 +640,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 7c44463f7b6132d988910bd04d3f868d36e5f251
+PODFILE CHECKSUM: 94761c56ab99c2529bcb3a1140e8b61d214bbc09
 
 COCOAPODS: 1.10.1

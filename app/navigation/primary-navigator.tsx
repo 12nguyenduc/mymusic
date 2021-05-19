@@ -8,6 +8,7 @@ import React from "react"
 
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { ListMusic } from "../screens/listMusic"
+import { DownloadMusic } from "../screens/downloadMusic"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,6 +25,7 @@ import { ListMusic } from "../screens/listMusic"
 
 export const ScreenNames = {
   ListMusic: 'ListMusic',
+  DownloadMusic: 'DownloadMusic',
 }
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
@@ -32,12 +34,14 @@ const Stack = createNativeStackNavigator()
 export function PrimaryNavigator() {
   return (
     <Stack.Navigator
+      initialRouteName={ScreenNames.ListMusic}
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
       }}
     >
       <Stack.Screen name={ScreenNames.ListMusic} component={ListMusic} />
+      <Stack.Screen name={ScreenNames.DownloadMusic} component={DownloadMusic} />
     </Stack.Navigator>
   )
 }

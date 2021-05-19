@@ -57,7 +57,7 @@ function App() {
   // In the meantime, don't render anything. This will be the background
   // color set in native by rootView's background color. You can replace
   // with your own loading component if you wish.
-  if (!rootStore) return null
+  // if (!rootStore) return null
 
   // otherwise, we're ready to render the app
   return (
