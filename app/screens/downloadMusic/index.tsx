@@ -59,7 +59,7 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
       myLog('downloadStart')
     }
 
-    const directoryFile = (Platform.OS === 'android' ? RNFS.ExternalStorageDirectoryPath : RNFS.CachesDirectoryPath) + '/MyMusic'
+    const directoryFile = (Platform.OS === 'android' ? RNFS.ExternalStorageDirectoryPath : RNFS.LibraryDirectoryPath) + '/MyMusic'
 
     // Creating folder
     if (RNFS.exists(directoryFile)) {
@@ -184,10 +184,10 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
             javaScriptEnabled={true}
             mixedContentMode={'always'}
             onNavigationStateChange={(result) => handleUrlWithMusic(result)}
-            onShouldStartLoadWithRequest={(request) => {
-              // Only allow navigating within this website
-              return request.url.includes('chiasenhac')
-            }}
+            // onShouldStartLoadWithRequest={(request) => {
+            //   // Only allow navigating within this website
+            //   return request.url.includes('chiasenhac')
+            // }}
           />
 
         </View>

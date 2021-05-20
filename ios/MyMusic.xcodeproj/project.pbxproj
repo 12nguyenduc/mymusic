@@ -14,6 +14,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		19CA66F914C241EC8B442BA2 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7E94A0D91F643B598078A26 /* Roboto-LightItalic.ttf */; };
+		2292AE2B26561C3600990554 /* RNReactNativeGetMusicFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2292AE2A26561C3600990554 /* RNReactNativeGetMusicFiles.m */; };
 		25E7C0AE6C6F4D7AB41BEFDC /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D395E5769644D71ADBA0C97 /* Nunito-SemiBold.ttf */; };
 		2C0613AE8AF646018350EDD2 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415F328AA649EFA105C816 /* RNPlaceholder.swift */; };
 		31AF8EC1A47D446486B6F210 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8D537258C294FB99C59FB6A /* Pacifico-Regular.ttf */; };
@@ -50,8 +51,6 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* MyMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMusicTests.m; sourceTree = "<group>"; };
 		015E320A312E47D0860CDB9A /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		031D59F60C4935ED0A9CED18 /* Pods-MyMusic-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMusic-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MyMusic-tvOSTests/Pods-MyMusic-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		098EC991E4EC6D1746544BE8 /* Pods-MyMusic-MyMusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMusic-MyMusicTests.debug.xcconfig"; path = "Target Support Files/Pods-MyMusic-MyMusicTests/Pods-MyMusic-MyMusicTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +64,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyMusic/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MyMusic/main.m; sourceTree = "<group>"; };
 		1DD102D7E6A845CE8F1274F1 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-Bold.ttf"; path = "../assets/fonts/RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		2292AE2926561C3600990554 /* RNReactNativeGetMusicFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNReactNativeGetMusicFiles.h; path = "../node_modules/react-native-get-music-files/ios/RNReactNativeGetMusicFiles.h"; sourceTree = "<group>"; };
+		2292AE2A26561C3600990554 /* RNReactNativeGetMusicFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNReactNativeGetMusicFiles.m; path = "../node_modules/react-native-get-music-files/ios/RNReactNativeGetMusicFiles.m"; sourceTree = "<group>"; };
 		262C49636D6808338F4F2C3A /* Pods-MyMusic-MyMusicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMusic-MyMusicTests.release.xcconfig"; path = "Target Support Files/Pods-MyMusic-MyMusicTests/Pods-MyMusic-MyMusicTests.release.xcconfig"; sourceTree = "<group>"; };
 		38CD5083287941BCBC05E17F /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		3C8A74E43FC5FF40346EDF1C /* Pods-MyMusic-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMusic-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MyMusic-tvOS/Pods-MyMusic-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,23 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* MyMusicTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* MyMusicTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = MyMusicTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* MyMusic */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +132,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				2292AE2926561C3600990554 /* RNReactNativeGetMusicFiles.h */,
+				2292AE2A26561C3600990554 /* RNReactNativeGetMusicFiles.m */,
 			);
 			name = MyMusic;
 			sourceTree = "<group>";
@@ -225,7 +211,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* MyMusic */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* MyMusicTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C768ED192424F8413D1936F6 /* Pods */,
@@ -406,10 +391,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MyMusic/Pods-MyMusic-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-ios-4.6.0_static/GoogleCast.framework/GoogleCastCoreResources.bundle",
+				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-ios-4.6.0_static/GoogleCast.framework/GoogleCastUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleCastCoreResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleCastUIResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -443,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				2292AE2B26561C3600990554 /* RNReactNativeGetMusicFiles.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				2C0613AE8AF646018350EDD2 /* RNPlaceholder.swift in Sources */,
 			);

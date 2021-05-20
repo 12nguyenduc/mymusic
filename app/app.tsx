@@ -86,5 +86,5 @@ export default codePush(codePushOptions)(App)
 // appcenter codepush release-react -a mymusic/android -d Production
 // DeTZ7RSkvVHuIGXud-ItQJhTCC_-OrwXJFNYD
 
-// appcenter codepush release-react -a mymusic/ios -d Production
+// appcenter codepush release-react -a mymusic/ios --plist-file ios/MyMusic/Info.plist -d Production
 // pPfLS8HyoH8DXm_8GbWEWCuX4Do2Zm5nUN4Pd

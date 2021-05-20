@@ -35,6 +35,9 @@ target 'MyMusic' do
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit"
 
+  pod 'react-native-google-cast/GuestMode', path: '../node_modules/react-native-google-cast/ios/'
+  pod 'google-cast-sdk'
+
   post_install do |installer|
     flipper_post_install(installer)
   end
