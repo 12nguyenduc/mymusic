@@ -10,6 +10,12 @@ class DownloadMusicStore {
     @action
     async downloadMusic() {
     }
+
+    @action
+    async downloaded(music) {
+      this.musics.push(music)
+      this.musics = [...this.musics]
+    }
 }
 
 const downloadMusicStore = new DownloadMusicStore()

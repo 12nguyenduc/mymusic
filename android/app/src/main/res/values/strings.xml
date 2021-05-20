@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">MyMusic</string>
+    <string name="app_name">My Music</string>
+    <string name="CodePushDeploymentKey">DeTZ7RSkvVHuIGXud-ItQJhTCC_-OrwXJFNYD</string>
 </resources>

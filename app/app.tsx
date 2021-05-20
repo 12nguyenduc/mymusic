@@ -29,16 +29,22 @@ import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
 import FlashMessage from "react-native-flash-message"
+import codePush from "react-native-code-push"
+import { View } from "react-native"
+
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
+
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, installMode: codePush.InstallMode.IMMEDIATE }
+
 
 /**
  * This is the root component of our app.
  */
 function App() {
   const navigationRef = useRef<NavigationContainerRef>()
-  const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
+  // const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
 
   // setRootNavigation(navigationRef)
   // useBackButtonHandler(navigationRef, canExit)
@@ -62,7 +68,7 @@ function App() {
 
   // otherwise, we're ready to render the app
   return (
-    <RootStoreProvider value={rootStore}>
+    <View style={{flex: 1}}>
       <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
         <RootNavigator
           ref={navigationRef}
@@ -71,8 +77,14 @@ function App() {
         />
       </SafeAreaProvider>
       <FlashMessage position="top" />
-    </RootStoreProvider>
+    </View>
   )
 }
 
-export default App
+export default codePush(codePushOptions)(App)
+
+// appcenter codepush release-react -a mymusic/android -d Production
+// DeTZ7RSkvVHuIGXud-ItQJhTCC_-OrwXJFNYD
+
+// appcenter codepush release-react -a mymusic/ios -d Production
+// pPfLS8HyoH8DXm_8GbWEWCuX4Do2Zm5nUN4Pd

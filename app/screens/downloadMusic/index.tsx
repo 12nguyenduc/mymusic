@@ -59,19 +59,19 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
       myLog('downloadStart')
     }
 
-    const directoryFile = RNFS.CachesDirectoryPath
+    const directoryFile = (Platform.OS === 'android' ? RNFS.ExternalStorageDirectoryPath : RNFS.CachesDirectoryPath) + '/MyMusic'
 
     // Creating folder
     if (RNFS.exists(directoryFile)) {
-      RNFS.unlink(directoryFile)
-        .then(() => {
-          console.log('FOLDER/FILE DELETED')
-        })
-        // `unlink` will throw an error, if the item to unlink does not exist
-        .catch((err) => {
-          console.log('CANT DELETE', err.message)
-          // this.setState({ showError: true })
-        })
+      // RNFS.unlink(directoryFile)
+      //   .then(() => {
+      //     console.log('FOLDER/FILE DELETED')
+      //   })
+      //   // `unlink` will throw an error, if the item to unlink does not exist
+      //   .catch((err) => {
+      //     console.log('CANT DELETE', err.message)
+      //     // this.setState({ showError: true })
+      //   })
 
       RNFS.mkdir(directoryFile)
     }
@@ -106,6 +106,7 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
             console.log('progress', received / total)
           })
           .then((res) => {
+            myLog(res)
             MediaMeta.get(res.path())
               .then(async metadata => {
                 myLog(metadata)
@@ -119,9 +120,9 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
                 } catch (e) {
                   myLog(e)
                 }
-                listMusic.push({ ...metadata, ...{ url: res.path(), thumb: undefined } })
-                listMusicStore.musics.push({ ...metadata, ...{ url: res.path(), thumb: undefined } })
+                listMusic.push({ ...metadata, ...{ url: 'file://' + res.path(), thumb: undefined } })
                 save(LIST_MUSIC, listMusic)
+                listMusicStore.downloaded({ ...metadata, ...{ url: 'file://' + res.path(), thumb: undefined } })
               })
               .catch(err => console.error(err))
             // the path should be dirs.DocumentDir + 'path-to-file.anything'
@@ -145,9 +146,9 @@ export const DownloadMusic: Component = observer(function DownloadMusic() {
   }
 
   const goback = () => {
-    if(webViewRef.current.canGoBack){
+    if (webViewRef.current.canGoBack) {
       webViewRef.current.goBack()
-    }else{
+    } else {
       navigation.pop()
     }
   }

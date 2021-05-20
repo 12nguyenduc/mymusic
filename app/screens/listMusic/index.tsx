@@ -9,16 +9,16 @@ import {
   Platform,
   Alert,
   Linking,
-  ScrollView, FlatList,
+  ScrollView, FlatList, Animated,
 } from "react-native"
 import { useNavigation, CommonActions, } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { commonStyles } from "../CommonStyles"
 import listMusicStore from "./ListMusicStore"
 import FastImage from 'react-native-fast-image'
-import { ICBack, ICDownload, ICHeadPhone } from "../../../assets/icons"
+import { ICDownload, ICHeadPhone } from "../../../assets/icons"
 import { MText } from "../../components/MText"
-import { requestMultiple, request, PERMISSIONS, RESULTS } from "react-native-permissions"
+import { request, PERMISSIONS, RESULTS } from "react-native-permissions"
 import MButton from "../../components/MButton"
 import { myLog } from "../../utils/log"
 import TrackPlayer, { usePlaybackState } from "react-native-track-player"
@@ -41,20 +41,57 @@ export const ListMusic: Component = observer(function ListMusic(props) {
   }
 
   async function setup() {
-    await TrackPlayer.setupPlayer({})
-    await TrackPlayer.updateOptions({
-      stopWithApp: true,
-      capabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-        TrackPlayer.CAPABILITY_STOP
-      ],
-      compactCapabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE
-      ]
+    // console.log('audioStore initialized')
+    TrackPlayer.getState().then((status) => {
+      console.log('Initial audio Player State:', status)
+      // this.state = status
+    })
+
+    TrackPlayer.addEventListener('playback-state', (data) => {
+      console.log('playback-state:', data.state)
+      // this.state = data.state
+      if (data.state === TrackPlayer.STATE_PLAYING) {
+        TrackPlayer.getRate().then((data) => {
+          // if (data !== this.audioPlayRate) {
+          //   this.setAudioPlayerRate(this.audioPlayRate, (Platform.OS === 'ios' ? 0 : 0))
+          // }
+        }, (error) => {
+          myLog(error)
+        })
+      }
+    })
+
+    TrackPlayer.addEventListener('playback-track-changed', (trackData) => {
+      const { nextTrack } = trackData
+      myLog(trackData)
+      // if (this.tracks) {
+      //   const queueIndex = findIndex(this.tracks, { id: nextTrack })
+      //   this.setCurrentTrack(this.tracks[queueIndex], queueIndex)
+      //   this.setTracksIndexDetails(this.tracks, queueIndex)
+      // } else {
+      //   TrackPlayer.getQueue().then((data) => {
+      //     const queueIndex = findIndex(data, { id: nextTrack })
+      //     this.setCurrentTrack(data[queueIndex], queueIndex)
+      //     this.setTracksIndexDetails(data, queueIndex)
+      //   }, (error) => {
+      //
+      //   })
+      // }
+      // this.setAudioPlayerRate(this.audioPlayRate, (Platform.OS === 'ios' ? 2000 : 0))
+    })
+
+    TrackPlayer.addEventListener('playback-queue-ended', (data) => {
+      console.log('playback-queue-ended =================', data)
+      if (Platform.OS === 'ios') {
+        // if (this.currentTrack !== null && this.state === TrackPlayer.STATE_PAUSED) {
+        // TrackPlayer.seekTo(0)
+        // }
+        // this.stopAudio()
+      } else {
+        if (data.position !== 0 && data.track !== null) {
+          // this.stopAudio()
+        }
+      }
     })
   }
 
@@ -65,21 +102,22 @@ export const ListMusic: Component = observer(function ListMusic(props) {
   }, [])
 
   const playMusic = async (item) => {
-    const state = await TrackPlayer.getState()
-    if (state === TrackPlayer.STATE_PLAYING) {
-      console.log('The player is playing')
-    };
+    console.log('play', item.albumName)
+    console.log('play', 'file://' + item.url)
+    try {
+      // Add a track to the queue
+      await TrackPlayer.add({
+        id: 'trackId',
+        url: item.url,
+        title: item.albumName,
+        artist: item.artist,
+      })
 
-    // Add a track to the queue
-    await TrackPlayer.add({
-      id: 'trackId',
-      url: item.url,
-      title: item.albumName,
-      artist: item.artist,
-    })
-
-    // Start playing it
-    await TrackPlayer.play()
+      // Start playing it
+      await TrackPlayer.play()
+    } catch (e) {
+      myLog(e)
+    }
   }
 
   const goDownload = () => {
@@ -119,6 +157,8 @@ export const ListMusic: Component = observer(function ListMusic(props) {
         </View>
         <View style={commonStyles.fill}>
           <FlatList
+            onRefresh={() => listMusicStore.getAllMusic()}
+            refreshing={listMusicStore.isLoading}
             data={listMusicStore.musics}
             renderItem={({ item, index }) => renderItem(item, index)}
             keyExtractor={(item, index) => '#' + index}

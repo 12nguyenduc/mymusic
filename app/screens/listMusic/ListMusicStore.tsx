@@ -16,11 +16,13 @@ class ListMusicStore {
 
     @action
     async getAllMusic() {
+      this.isLoading = true
       const localMusic = await load(LIST_MUSIC)
-        myLog(localMusic)
+      myLog(localMusic)
       if (localMusic !== null) {
         this.musics = localMusic
       }
+      this.isLoading = false
     }
 }
 
