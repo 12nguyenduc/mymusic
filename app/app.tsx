@@ -38,7 +38,6 @@ export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
 const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, installMode: codePush.InstallMode.IMMEDIATE }
 
-
 /**
  * This is the root component of our app.
  */

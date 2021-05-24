@@ -7,6 +7,8 @@ import * as Types from "./api.types"
  * Manages all requests to the API.
  */
 export class Api {
+  private static instance: Api;
+
   /**
    * The underlying apisauce instance which performs the requests.
    */
@@ -24,6 +26,15 @@ export class Api {
    */
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config
+    this.setup()
+  }
+
+  public static getInstance(): Api {
+    if (!Api.instance) {
+      Api.instance = new Api()
+    }
+
+    return Api.instance
   }
 
   /**
@@ -95,6 +106,28 @@ export class Api {
         name: response.data.name,
       }
       return { kind: "ok", user: resultUser }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  /**
+   *  Get cities
+   */
+
+  async getCities() {
+    // make the api call
+    const response: ApiResponse<any> = await this.apisauce.get(`http://testcustomerapi.requatroi.com/v1/Location/GetAllCity`)
+
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    // transform the data into the format we are expecting
+    try {
+      return { kind: "ok", data: response.data.Data }
     } catch {
       return { kind: "bad-data" }
     }

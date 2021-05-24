@@ -256,7 +256,7 @@ PODS:
     - React
   - react-native-meta-media (0.0.11):
     - React-Core
-  - react-native-pager-view (5.1.8):
+  - react-native-pager-view (5.1.9):
     - React-Core
   - react-native-safe-area-context (0.7.3):
     - React
@@ -264,7 +264,7 @@ PODS:
     - React
   - react-native-track-player (1.2.5):
     - React
-  - react-native-webview (11.4.5):
+  - react-native-webview (11.0.0):
     - React-Core
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
@@ -636,11 +636,11 @@ SPEC CHECKSUMS:
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
   react-native-google-cast: 8edc149baf13eee0dd2acf1583ed1412c00fd253
   react-native-meta-media: ee837c99adfdc2d6f14bd129b97f9bd3e84434d8
-  react-native-pager-view: a0b86051cb34c1868601ba65a8133e3b7a2830b5
+  react-native-pager-view: 14653de580178af7e65aa7e3fa08b4f243c86d4d
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-track-player: 1265cf3de08881181faac4320f6d928a22d8cd0b
-  react-native-webview: 6d1d368c38edcc0a074bcc51a94ec8de700c241e
+  react-native-webview: 6b7950628616679d81bdd75747e50cf6de9b5a5f
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13

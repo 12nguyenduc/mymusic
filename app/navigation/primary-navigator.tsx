@@ -10,6 +10,8 @@ import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { ListMusic } from "../screens/listMusic"
 import { DownloadMusic } from "../screens/downloadMusic"
 import { DownloadYoutube } from "../screens/downloadYoutube"
+import { Webview } from "../screens/webview"
+import { Cities } from "../screens/cities"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -28,6 +30,8 @@ export const ScreenNames = {
   ListMusic: 'ListMusic',
   DownloadMusic: 'DownloadMusic',
   DownloadYoutube: 'DownloadYoutube',
+  Webview: 'Webview',
+  Cities: 'Cities',
 }
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
@@ -36,7 +40,7 @@ const Stack = createNativeStackNavigator()
 export function PrimaryNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName={ScreenNames.ListMusic}
+      initialRouteName={ScreenNames.Webview}
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
@@ -45,6 +49,8 @@ export function PrimaryNavigator() {
       <Stack.Screen name={ScreenNames.ListMusic} component={ListMusic} />
       <Stack.Screen name={ScreenNames.DownloadMusic} component={DownloadMusic} />
       <Stack.Screen name={ScreenNames.DownloadYoutube} component={DownloadYoutube} />
+      <Stack.Screen name={ScreenNames.Webview} component={Webview} />
+      <Stack.Screen name={ScreenNames.Cities} component={Cities} />
     </Stack.Navigator>
   )
 }
